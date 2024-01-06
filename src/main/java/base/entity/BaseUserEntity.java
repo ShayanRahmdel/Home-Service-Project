@@ -5,21 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class BaseUserEntity {
+@MappedSuperclass
+public class BaseUserEntity<ID extends Serializable> implements Serializable {
+
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private ID id;
 
     @Column(nullable = false)
     private String firstName;
