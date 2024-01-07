@@ -1,4 +1,4 @@
-package entity;
+package entity.users;
 
 import base.entity.BaseUserEntity;
 import lombok.AllArgsConstructor;
