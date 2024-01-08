@@ -5,7 +5,7 @@ import base.entity.BaseEntity;
 import javax.persistence.Column;
 
 
-public class Service extends BaseEntity<Long> {
+public class SubDuty extends BaseEntity<Long> {
     @Column(nullable = false)
     private String aboutService;
 

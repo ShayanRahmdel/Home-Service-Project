@@ -9,6 +9,6 @@ import javax.persistence.Entity;
 @Entity
 @Setter
 @Getter
-public class MainService extends BaseEntity<Long> {
+public class MainDuty extends BaseEntity<Long> {
 
 }
