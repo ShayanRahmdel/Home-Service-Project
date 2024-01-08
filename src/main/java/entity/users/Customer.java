@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Customer extends BaseUserEntity<Long> {
+public class Customer extends User {
 
     @Enumerated(EnumType.STRING)
     private TypeUser typeUser;
