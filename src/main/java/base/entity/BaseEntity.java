@@ -18,6 +18,5 @@ public class BaseEntity<ID extends Serializable> implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
 
-    @Column(nullable = false,unique = true)
-    private String title;
+
 }
