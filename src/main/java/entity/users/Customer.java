@@ -27,5 +27,11 @@ public class Customer extends User {
     @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
 
-
+    @Override
+    public String toString() {
+        return "Customer id " + getId()+"\n"+
+                "Customer name " + getFirstName()+" "+ getLastName()+"\n"+
+                "Customer email " + getEmail() +"\n"+
+                "Customer password " + getPassword();
+    }
 }
