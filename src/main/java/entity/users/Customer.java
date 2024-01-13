@@ -4,12 +4,11 @@ package entity.users;
 import entity.business.Comment;
 import entity.business.Wallet;
 import entity.enumration.TypeUser;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Customer extends User {
 
     @Enumerated(EnumType.STRING)
@@ -27,4 +27,6 @@ public class Customer extends User {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
+
+
 }
