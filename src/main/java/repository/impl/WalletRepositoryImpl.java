@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class WalletRepositoryImpl extends BaseEntityRepositoryImpl<Wallet, Integer> implements WalletRepository {
     public WalletRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
     @Override
