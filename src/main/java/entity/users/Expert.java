@@ -26,7 +26,7 @@ public class Expert extends User {
     @Enumerated(EnumType.STRING)
     private Confirmation confirmation;
 
-    private Byte image;
+    private Byte[] image;
 
     @ManyToMany
     @JoinTable(name = "expert_subduty")
