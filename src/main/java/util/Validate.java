@@ -2,45 +2,52 @@ package util;
 
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Validate {
-    private static Scanner input = new Scanner(System.in);
     public static ValidatorFactory validatorFactory = javax.validation.Validation.buildDefaultValidatorFactory();
 
     public static Validator validator = validatorFactory.getValidator();
 
-    public static Boolean isValidPassword(String password){
+    public static Boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8}$");
         return password.matches(pattern.pattern());
     }
-    public static Boolean isValidName(String password){
+
+    public static Boolean isValidName(String name) {
         Pattern pattern = Pattern.compile("^[A-Z](?=.{1,29}$)[A-Za-z]*(?:\\h+[A-Z][A-Za-z]*)*$");
-        return password.matches(pattern.pattern());
+        return name.matches(pattern.pattern());
     }
 
-    public static String passwordValidation() {
-        String password="";
-        boolean flag = true;
-        while (flag){
-            password = input.next();
-            if (Validate.isValidPassword(password)){
-                flag = false;
-            }else System.out.println("enter valid password");
-        }
-        return password;
+    public static Boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return email.matches(pattern.pattern());
     }
 
-    public static String nameValidation() {
-        String name="";
-        boolean flag = true;
-        while (flag){
-            name = input.next();
-            if (Validate.isValidName(name)){
-                flag = false;
-            }else System.out.println("enter valid password");
+    public static Boolean passwordValidation(String password) {
+
+        if (!Validate.isValidPassword(password)) {
+            System.out.println("enter valid password");
+            return false;
         }
-        return name;
+        return true;
     }
+
+    public static Boolean nameValidation(String name) {
+        if (!Validate.isValidName(name)) {
+            System.out.println("enter valid name");
+            return false;
+        }
+        return true;
+    }
+
+    public static Boolean emailValidation(String email) {
+
+        if (!Validate.isValidEmail(email)) {
+            System.out.println("enter valid email");
+            return false;
+        }
+        return true;
+    }
+
 }
