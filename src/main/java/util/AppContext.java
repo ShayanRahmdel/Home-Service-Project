@@ -14,6 +14,7 @@ public class AppContext {
     private static final EntityManagerFactory ENTITY_MANAGER_FACTORY;
     private static final EntityManager ENTITY_MANAGER;
 
+    private static final AdminRepository ADMIN_REPOSITORY;
     private static final CustomerRepository CUSTOMER_REPOSITORY;
     private static final ExpertRepository EXPERT_REPOSITORY;
     private static final OrderRepository ORDER_REPOSITORY;
@@ -31,6 +32,7 @@ public class AppContext {
     private static final WalletService WALLET_SERVICE;
     private static final DutyCategoryService DUTY_CATEGORY_SERVICE;
     private static final SubDutyService SUB_DUTY_SERVICE;
+    private static final AdminService ADMIN_SERVICE;
 
 
 
@@ -38,6 +40,7 @@ public class AppContext {
     static {
         ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("default");
         ENTITY_MANAGER = ENTITY_MANAGER_FACTORY.createEntityManager();
+        ADMIN_REPOSITORY = new AdminRepositoryImpl(ENTITY_MANAGER);
         CUSTOMER_REPOSITORY = new CustomerRepositoryImpl(ENTITY_MANAGER);
         EXPERT_REPOSITORY = new ExpertRepositoryImpl(ENTITY_MANAGER);
         ORDER_REPOSITORY = new OrderRepositoryImpl(ENTITY_MANAGER);
@@ -47,6 +50,7 @@ public class AppContext {
         DUTY_CATEGORY_REPOSITORY = new DutyCategoryRepositoryImpl(ENTITY_MANAGER);
         SUB_DUTY_REPOSITORY = new SubDutyRepositoryImpl(ENTITY_MANAGER);
 
+
         CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY);
         EXPERT_SERVICE = new ExpertServiceImpl(EXPERT_REPOSITORY);
         ORDER_SERVICE = new OrderServiceImpl(ORDER_REPOSITORY);
@@ -55,6 +59,7 @@ public class AppContext {
         COMMENT_SERVICE = new CommentServiceImpl(COMMENT_REPOSITORY);
         SUB_DUTY_SERVICE = new SubDutyServiceImpl(SUB_DUTY_REPOSITORY);
         DUTY_CATEGORY_SERVICE = new DutyCategoryServiceImpl(DUTY_CATEGORY_REPOSITORY);
+        ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY,EXPERT_SERVICE,CUSTOMER_SERVICE,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE);
 
 
     }
@@ -65,5 +70,13 @@ public class AppContext {
 
     public static CustomerService getCustomerService(){
         return CUSTOMER_SERVICE;
+    }
+
+    public static ExpertService getExpertService(){
+        return EXPERT_SERVICE;
+    }
+
+    public static AdminService getAdminService(){
+        return ADMIN_SERVICE;
     }
 }
