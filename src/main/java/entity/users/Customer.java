@@ -16,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@Builder
 public class Customer extends User {
 
     @Enumerated(EnumType.STRING)
