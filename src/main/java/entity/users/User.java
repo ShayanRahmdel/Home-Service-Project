@@ -8,7 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 @Entity
@@ -33,4 +36,8 @@ public class User extends BaseEntity<Integer> {
     private String password;
 
     private LocalDate signUpDate;
+
+    private Time signUpTime;
+
+
 }
