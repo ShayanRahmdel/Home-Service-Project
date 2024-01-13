@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class WorkSuggestionRepositoryImpl extends BaseEntityRepositoryImpl<WorkSuggestion,Integer> implements WorkSuggestionRepository {
     public WorkSuggestionRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
     @Override
