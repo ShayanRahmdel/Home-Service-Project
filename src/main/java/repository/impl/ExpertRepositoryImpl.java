@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class ExpertRepositoryImpl extends BaseEntityRepositoryImpl<Expert,Integer> implements ExpertRepository {
     public ExpertRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
     @Override
