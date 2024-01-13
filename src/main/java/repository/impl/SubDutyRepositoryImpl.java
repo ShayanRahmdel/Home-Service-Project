@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class SubDutyRepositoryImpl extends BaseEntityRepositoryImpl<SubDuty,Integer> implements SubDutyRepository {
     public SubDutyRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
     @Override
