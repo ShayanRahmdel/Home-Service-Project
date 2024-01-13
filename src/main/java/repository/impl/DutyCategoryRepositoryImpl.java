@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class DutyCategoryRepositoryImpl extends BaseEntityRepositoryImpl<DutyCategory,Integer> implements DutyCategoryRepository {
     public DutyCategoryRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
 
