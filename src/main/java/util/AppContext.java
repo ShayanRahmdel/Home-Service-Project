@@ -62,4 +62,8 @@ public class AppContext {
     public static void init() {
         System.out.println("initialize DateBase");
     }
+
+    public static CustomerService getCustomerService(){
+        return CUSTOMER_SERVICE;
+    }
 }
