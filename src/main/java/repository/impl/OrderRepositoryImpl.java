@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class OrderRepositoryImpl extends BaseEntityRepositoryImpl<Order,Integer> implements OrderRepository {
     public OrderRepositoryImpl(EntityManager entityManager) {
-        super();
+        this.entityManager=entityManager;
     }
 
     @Override
