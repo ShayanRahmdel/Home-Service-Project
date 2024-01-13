@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +27,7 @@ public class Order extends BaseEntity<Integer> {
 
     private LocalDate workDate;
 
-    @Temporal(value = TemporalType.TIME)
-    private Date timeDate;
+    private Time timeDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
