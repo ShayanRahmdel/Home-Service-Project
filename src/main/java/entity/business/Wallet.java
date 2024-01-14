@@ -25,4 +25,8 @@ public class Wallet extends BaseEntity<Integer> {
 
     @OneToOne(mappedBy = "wallet")
     private Expert expert;
+
+    public Wallet(Double amount) {
+        this.amount = amount;
+    }
 }
