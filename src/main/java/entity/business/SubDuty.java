@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -19,11 +17,9 @@ import java.util.Set;
 @Setter
 @Getter
 public class SubDuty extends BaseEntity<Integer> {
-    @Column(nullable = false,unique = true)
-    private String title;
 
     @Column(nullable = false)
-    private String aboutService;
+    private String description;
 
     @Column(nullable = false)
     private Double basePrice;
@@ -31,5 +27,13 @@ public class SubDuty extends BaseEntity<Integer> {
     @ManyToMany
     private Set<Expert> experts;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private DutyCategory dutyCategory;
 
+    @Override
+    public String toString() {
+        return "SubDuty id "+ getId() +"\n"+
+                "description " + description +"\n"+
+                "basePrice" + basePrice + "\n";
+    }
 }
