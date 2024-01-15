@@ -195,4 +195,20 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
         }
 
     }
+
+    @Override
+    public void updateSubDuty(Integer subDutyId, String newDescription, Double newBasePrice) {
+        SubDuty subDuty = subDutyService.findById(subDutyId).orElse(null);
+        assert subDuty != null;
+        subDuty.setDescription(newDescription);
+        subDuty.setBasePrice(newBasePrice);
+        subDutyService.saveOrUpdate(subDuty);
+
+    }
+
+    @Override
+    public List<SubDuty> seeSubDutyByCategory(Integer category) {
+       return subDutyService.seeSubDutyByCategory(category);
+
+    }
 }
