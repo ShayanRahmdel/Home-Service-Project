@@ -7,7 +7,10 @@ import java.util.regex.Pattern;
 public class Validate {
 
 
-
+    public static Boolean isValidPostalCode(String postalCode) {
+        Pattern pattern = Pattern.compile("^(?!(\\d)\\1{3})[13-9]{4}[1346-9][ -]?[013-9]{5}$|^$");
+        return postalCode.matches(pattern.pattern());
+    }
 
     public static Boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8}$");
@@ -45,6 +48,14 @@ public class Validate {
 
         if (!Validate.isValidEmail(email)) {
             System.out.println("enter valid email");
+            return false;
+        }
+        return true;
+    }
+
+    public static Boolean postalValidation(String postal){
+        if (!Validate.isValidPostalCode(postal)) {
+            System.out.println("enter valid postal code");
             return false;
         }
         return true;
