@@ -37,4 +37,8 @@ public interface AdminService extends BaseEntityService<Admin,Integer> {
 
     void removeExpert(Integer expertId);
 
+    void updateSubDuty(Integer subDutyId,String newDescription,Double newBasePrice);
+
+    List<SubDuty> seeSubDutyByCategory(Integer category);
+
 }
