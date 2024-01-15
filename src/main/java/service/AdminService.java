@@ -22,6 +22,11 @@ public interface AdminService extends BaseEntityService<Admin,Integer> {
     List<DutyCategory> seeAllDutyCategories();
     List<SubDuty> seeAllSubDuty();
 
-    void addExpertInSubDuty(Expert expert);
+    void addExpertInSubDuty(Integer expertId,Integer subDutyId);
+
+    void confirmExpert(Integer expertId);
+    void removeExpertFromSubDuty(Integer expertId,Integer subDutyId);
+
+    boolean validateExpertOneDutyCategory(Expert expert,Integer newDutyCategory);
 
 }
