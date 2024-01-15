@@ -29,8 +29,7 @@ public class Expert extends User {
 
     private byte[] image;
 
-    @ManyToMany
-    @JoinTable(name = "expert_subduty")
+    @ManyToMany(mappedBy = "experts")
     private Set<SubDuty> subDuties;
 
     @OneToMany(mappedBy = "expert")
@@ -39,10 +38,22 @@ public class Expert extends User {
     @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
 
+    public Expert(Integer id) {
+        setId(id);
+    }
+
     public void setImage(byte[] image) {
         if (image.length > 300 * 1024) {
             throw new IllegalArgumentException("Image size exceeds the limit of 300KB.");
         }
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return  "Epert id " + getId()+"\n"+
+                "Expert name " + getFirstName()+" "+ getLastName()+"\n"+
+                "Expert email " + getEmail() +"\n"+
+                "Expert password " + getPassword();
     }
 }
