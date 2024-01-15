@@ -5,9 +5,9 @@ import javax.validation.ValidatorFactory;
 import java.util.regex.Pattern;
 
 public class Validate {
-    public static ValidatorFactory validatorFactory = javax.validation.Validation.buildDefaultValidatorFactory();
 
-    public static Validator validator = validatorFactory.getValidator();
+
+
 
     public static Boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8}$");
