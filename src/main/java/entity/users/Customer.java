@@ -1,6 +1,7 @@
 package entity.users;
 
 
+import entity.business.Address;
 import entity.business.Comment;
 import entity.business.Wallet;
 import entity.enumration.TypeUser;
@@ -26,6 +27,9 @@ public class Customer extends User {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Address> addresses;
 
     @Override
     public String toString() {
