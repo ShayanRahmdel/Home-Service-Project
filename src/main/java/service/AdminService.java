@@ -29,4 +29,12 @@ public interface AdminService extends BaseEntityService<Admin,Integer> {
 
     boolean validateExpertOneDutyCategory(Expert expert,Integer newDutyCategory);
 
+    void removeDutyCategory(Integer dutyCategoryId);
+
+    void removeSubDuty(Integer subDutyId);
+
+    void removeCustomer(Integer customerId);
+
+    void removeExpert(Integer expertId);
+
 }
