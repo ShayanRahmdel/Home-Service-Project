@@ -51,7 +51,6 @@ public class AppContext {
         SUB_DUTY_REPOSITORY = new SubDutyRepositoryImpl(ENTITY_MANAGER);
 
 
-        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY);
         EXPERT_SERVICE = new ExpertServiceImpl(EXPERT_REPOSITORY);
         ORDER_SERVICE = new OrderServiceImpl(ORDER_REPOSITORY);
         WORK_SUGGESTION_SERVICE = new WorkSuggestionServiceImpl(WORK_SUGGESTION_REPOSITORY);
@@ -59,6 +58,7 @@ public class AppContext {
         COMMENT_SERVICE = new CommentServiceImpl(COMMENT_REPOSITORY);
         SUB_DUTY_SERVICE = new SubDutyServiceImpl(SUB_DUTY_REPOSITORY);
         DUTY_CATEGORY_SERVICE = new DutyCategoryServiceImpl(DUTY_CATEGORY_REPOSITORY);
+        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE,ORDER_SERVICE);
         ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY,EXPERT_SERVICE,CUSTOMER_SERVICE,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE);
 
 
