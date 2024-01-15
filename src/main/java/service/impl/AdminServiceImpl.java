@@ -48,7 +48,7 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
             subDuty.setDutyCategory(dutyCategory);
             subDutyService.saveOrUpdate(subDuty);
         } catch (PersistenceException e) {
-            System.out.println("you already have this SubCategory");
+            System.out.println("you already have this SubCategory or have not this Category");
         }
 
         return subDuty;
@@ -146,5 +146,53 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
             }
         }
         return true;
+    }
+
+    @Override
+    public void removeDutyCategory(Integer dutyCategoryId) {
+        List<DutyCategory> dutyCategories = seeAllDutyCategories();
+        System.out.println(dutyCategories);
+        try {
+            dutyCategoryService.deleteById(dutyCategoryId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Unable to delete");
+        }
+
+    }
+
+    @Override
+    public void removeSubDuty(Integer subDutyId) {
+        List<SubDuty> subDuties = seeAllSubDuty();
+        System.out.println(subDuties);
+        try {
+            subDutyService.deleteById(subDutyId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Unable to delete");
+        }
+
+    }
+
+    @Override
+    public void removeCustomer(Integer customerId) {
+        List<Customer> customers = seeAllCustomer();
+        System.out.println(customers);
+        try {
+            customerService.deleteById(customerId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Unable to delete");
+        }
+
+    }
+
+    @Override
+    public void removeExpert(Integer expertId) {
+        List<Expert> experts = seeAllExpert();
+        System.out.println(experts);
+        try {
+            expertService.deleteById(expertId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Unable to delete");
+        }
+
     }
 }
