@@ -36,4 +36,8 @@ public class SubDuty extends BaseEntity<Integer> {
                 "description " + description +"\n"+
                 "basePrice" + basePrice + "\n";
     }
+
+    public SubDuty(Integer integer) {
+        super(integer);
+    }
 }
