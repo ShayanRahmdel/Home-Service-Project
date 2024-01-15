@@ -34,7 +34,8 @@ public class SubDuty extends BaseEntity<Integer> {
     public String toString() {
         return "SubDuty id "+ getId() +"\n"+
                 "description " + description +"\n"+
-                "basePrice" + basePrice + "\n";
+                "basePrice " + basePrice + "\n"+
+                "========================="+"\n";
     }
 
     public SubDuty(Integer integer) {
