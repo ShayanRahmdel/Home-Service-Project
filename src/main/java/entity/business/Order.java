@@ -42,4 +42,7 @@ public class Order extends BaseEntity<Integer> {
     @OneToMany(mappedBy = "order")
     private List<WorkSuggestion> workSuggestions;
 
+    @OneToOne
+    private Address address;
+
 }
