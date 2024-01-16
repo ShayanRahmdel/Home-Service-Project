@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Order extends BaseEntity<Integer> {
 
     private LocalDate workDate;
 
-    private Time timeDate;
+    private LocalTime timeDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
