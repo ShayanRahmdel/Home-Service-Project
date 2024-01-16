@@ -1,7 +1,10 @@
 package service.impl;
 
+import base.entity.BaseEntity;
 import base.service.impl.BaseEntityServiceImpl;
 import entity.business.Comment;
+import entity.business.Order;
+import entity.business.SubDuty;
 import entity.enumration.Confirmation;
 import entity.enumration.TypeUser;
 import entity.users.Expert;
@@ -9,15 +12,22 @@ import repository.CommentRepository;
 import repository.ExpertRepository;
 import service.CommentService;
 import service.ExpertService;
+import service.OrderService;
 import util.Validate;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ExpertServiceImpl extends BaseEntityServiceImpl<Expert,Integer, ExpertRepository> implements ExpertService {
-    public ExpertServiceImpl(ExpertRepository repository) {
+    private final OrderService orderService;
+    public ExpertServiceImpl(ExpertRepository repository,OrderService orderService) {
         super(repository);
+        this.orderService=orderService;
     }
 
     @Override
@@ -33,4 +43,12 @@ public class ExpertServiceImpl extends BaseEntityServiceImpl<Expert,Integer, Exp
         }
         return "failed to signUp";
     }
+
+    @Override
+    public List<Order> seeOrder(Integer expertId) {
+       return repository.seeOrder(expertId);
+
+
+    }
 }
+
