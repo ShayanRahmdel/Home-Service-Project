@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -21,7 +22,7 @@ public class WorkSuggestion extends BaseEntity<Integer> {
 
     private LocalDate suggestedDate;
 
-    private Time suggestedBeginTime;
+    private LocalTime suggestedBeginTime;
 
     private Double suggestedPrice;
 
