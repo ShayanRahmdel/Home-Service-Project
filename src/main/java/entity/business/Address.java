@@ -34,4 +34,12 @@ public class Address extends BaseEntity<Integer> {
     @OneToOne(mappedBy = "address")
     private Order order;
 
+    @Override
+    public String toString() {
+        return " ==== Address ====  " +"\n"+
+                "state  " + state + "\n" +
+                "city   " + city + "\n" +
+                "address " + address + "\n" +
+                "postalCode  " + postalCode + "\n";
+    }
 }
