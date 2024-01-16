@@ -6,6 +6,7 @@ import entity.business.Comment;
 import entity.business.Order;
 import entity.business.SubDuty;
 import entity.enumration.Confirmation;
+import entity.enumration.OrderStatus;
 import entity.enumration.TypeUser;
 import entity.users.Expert;
 import repository.CommentRepository;
@@ -49,6 +50,20 @@ public class ExpertServiceImpl extends BaseEntityServiceImpl<Expert,Integer, Exp
        return repository.seeOrder(expertId);
 
 
+    }
+
+    @Override
+    public Order acceptOrder(Integer orderId) {
+        try {
+            Order order = orderService.findById(orderId).orElse(null);
+            assert order != null;
+            order.setOrderStatus(OrderStatus.Work_Being);
+            orderService.saveOrUpdate(order);
+            return order;
+        }catch (NullPointerException e){
+            System.out.println("wrong Order ID");
+        }
+        return null;
     }
 }
 
