@@ -46,4 +46,14 @@ public class Order extends BaseEntity<Integer> {
     @OneToOne
     private Address address;
 
+    @Override
+    public String toString() {
+        return "Order id  " + getId() + "\n"+
+                "proposedPrice " + proposedPrice +"\n"+
+                "jobDescription " + jobDescription + "\n" +
+                "workDate " + workDate + "\n" +
+                "timeDate " + timeDate +"\n"+
+                "Address " + address + "\n" +
+                "=============================="+"\n";
+    }
 }
