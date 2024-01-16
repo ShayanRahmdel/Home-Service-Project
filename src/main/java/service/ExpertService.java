@@ -13,4 +13,6 @@ public interface ExpertService extends BaseEntityService<Expert,Integer> {
 
     List<Order> seeOrder(Integer expertId);
 
+    Order acceptOrder(Integer orderId);
+
 }
