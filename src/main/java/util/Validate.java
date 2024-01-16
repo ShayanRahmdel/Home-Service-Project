@@ -11,6 +11,10 @@ public class Validate {
         Pattern pattern = Pattern.compile("^(?!(\\d)\\1{3})[13-9]{4}[1346-9][ -]?[013-9]{5}$|^$");
         return postalCode.matches(pattern.pattern());
     }
+    public static Boolean isValidCity(String city) {
+        Pattern pattern = Pattern.compile("^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*$");
+        return city.matches(pattern.pattern());
+    }
 
     public static Boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8}$");
@@ -56,6 +60,14 @@ public class Validate {
     public static Boolean postalValidation(String postal){
         if (!Validate.isValidPostalCode(postal)) {
             System.out.println("enter valid postal code");
+            return false;
+        }
+        return true;
+    }
+
+    public static Boolean cityValidation(String city){
+        if (!Validate.isValidCity(city)) {
+            System.out.println("enter valid city code");
             return false;
         }
         return true;
