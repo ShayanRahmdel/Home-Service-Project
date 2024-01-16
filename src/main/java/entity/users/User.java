@@ -8,7 +8,7 @@ import javax.validation.constraints.Email;
 
 import java.sql.Time;
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 
 
 @Entity
@@ -34,7 +34,7 @@ public class User extends BaseEntity<Integer> {
 
     private LocalDate signUpDate;
 
-    private Time signUpTime;
+    private LocalTime signUpTime;
 
 
 }
