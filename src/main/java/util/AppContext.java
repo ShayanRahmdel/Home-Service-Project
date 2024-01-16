@@ -23,6 +23,7 @@ public class AppContext {
     private static final WalletRepository WALLET_REPOSITORY;
     private static final DutyCategoryRepository DUTY_CATEGORY_REPOSITORY;
     private static final SubDutyRepository SUB_DUTY_REPOSITORY;
+    private static final AddressRepository ADDRESS_REPOSITORY;
 
     private static final CustomerService CUSTOMER_SERVICE;
     private static final ExpertService EXPERT_SERVICE;
@@ -33,6 +34,7 @@ public class AppContext {
     private static final DutyCategoryService DUTY_CATEGORY_SERVICE;
     private static final SubDutyService SUB_DUTY_SERVICE;
     private static final AdminService ADMIN_SERVICE;
+    private static final AddressService ADDRESS_SERVICE;
 
 
 
@@ -49,6 +51,7 @@ public class AppContext {
         COMMENT_REPOSITORY = new CommentRepositoryImpl(ENTITY_MANAGER);
         DUTY_CATEGORY_REPOSITORY = new DutyCategoryRepositoryImpl(ENTITY_MANAGER);
         SUB_DUTY_REPOSITORY = new SubDutyRepositoryImpl(ENTITY_MANAGER);
+        ADDRESS_REPOSITORY = new AddressRepositoryImpl(ENTITY_MANAGER);
 
 
         EXPERT_SERVICE = new ExpertServiceImpl(EXPERT_REPOSITORY);
@@ -58,7 +61,8 @@ public class AppContext {
         COMMENT_SERVICE = new CommentServiceImpl(COMMENT_REPOSITORY);
         SUB_DUTY_SERVICE = new SubDutyServiceImpl(SUB_DUTY_REPOSITORY);
         DUTY_CATEGORY_SERVICE = new DutyCategoryServiceImpl(DUTY_CATEGORY_REPOSITORY);
-        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE,ORDER_SERVICE);
+        ADDRESS_SERVICE = new AddressServiceImpl(ADDRESS_REPOSITORY);
+        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE,ORDER_SERVICE,ADDRESS_SERVICE);
         ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY,EXPERT_SERVICE,CUSTOMER_SERVICE,DUTY_CATEGORY_SERVICE,SUB_DUTY_SERVICE);
 
 
