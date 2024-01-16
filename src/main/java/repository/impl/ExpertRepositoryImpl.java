@@ -1,11 +1,14 @@
 package repository.impl;
 
 import base.repository.impl.BaseEntityRepositoryImpl;
+import entity.business.Order;
 import entity.users.Expert;
 import repository.ExpertRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ExpertRepositoryImpl extends BaseEntityRepositoryImpl<Expert,Integer> implements ExpertRepository {
     public ExpertRepositoryImpl(EntityManager entityManager) {
@@ -33,5 +36,16 @@ public class ExpertRepositoryImpl extends BaseEntityRepositoryImpl<Expert,Intege
             rollBack();
         }
 
+    }
+
+    @Override
+    public List<Order> seeOrder(Integer expertId) {
+        String hql="SELECT o FROM Order o " +
+                "JOIN o.subDuty sd " +
+                "JOIN sd.experts e " +
+                "WHERE e.id = :expertId";
+        TypedQuery<Order> query = entityManager.createQuery(hql, Order.class);
+        query.setParameter("expertId", expertId);
+        return query.getResultList();
     }
 }
