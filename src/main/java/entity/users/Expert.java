@@ -3,7 +3,6 @@ package entity.users;
 import entity.business.Wallet;
 import entity.business.WorkSuggestion;
 import entity.enumration.Confirmation;
-import entity.enumration.TypeUser;
 import entity.business.SubDuty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +19,6 @@ import java.util.Set;
 @Setter
 @Getter
 public class Expert extends User {
-
-    @Enumerated(EnumType.STRING)
-    private TypeUser typeUser;
 
     @Enumerated(EnumType.STRING)
     private Confirmation confirmation;
