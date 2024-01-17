@@ -3,10 +3,9 @@ package repository.impl;
 import base.repository.impl.BaseEntityRepositoryImpl;
 import entity.users.Customer;
 import repository.CustomerRepository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+
 
 public class CustomerRepositoryImpl extends BaseEntityRepositoryImpl<Customer,Integer> implements CustomerRepository {
     public CustomerRepositoryImpl(EntityManager entityManager) {
