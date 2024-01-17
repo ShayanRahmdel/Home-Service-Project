@@ -19,17 +19,17 @@ public class ExpertServiceImpl extends BaseEntityServiceImpl<Expert,Integer, Exp
     }
 
     @Override
-    public String signUp(Expert expert) {
+    public Expert signUp(Expert expert) {
         if (Validate.nameValidation(expert.getFirstName()) &&
                 Validate.nameValidation(expert.getLastName()) &&
                 Validate.emailValidation(expert.getEmail()) &&
                 Validate.passwordValidation(expert.getPassword())) {
             expert.setConfirmation(Confirmation.New);
             repository.saveOrUpdate(expert);
-            return "successfully signUp";
+            return expert;
 
         }
-        return "failed to signUp";
+        return expert;
     }
 
     @Override
