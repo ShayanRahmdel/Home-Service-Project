@@ -22,7 +22,7 @@ public class Comment extends BaseEntity<Integer> {
 
     @Max(value=10, message = "Your score is greater than 10")
     @Min(value =0,message = "Your score is less than 0")
-    private Integer score;
+    private Integer score=0;
 
     @OneToOne(mappedBy = "comment")
     private Order order;
