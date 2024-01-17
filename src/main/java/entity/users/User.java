@@ -26,14 +26,16 @@ public class User extends BaseEntity<Integer> {
     private String lastName;
 
     @Email
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String email;
 
-    @Column(length = 8)
+    @Column(length = 8,nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private LocalDate signUpDate;
 
+    @Column(nullable = false)
     private LocalTime signUpTime;
 
 
