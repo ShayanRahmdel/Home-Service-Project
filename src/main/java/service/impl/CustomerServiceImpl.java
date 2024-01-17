@@ -38,15 +38,15 @@ public class CustomerServiceImpl extends BaseEntityServiceImpl<Customer, Integer
     }
 
     @Override
-    public String signUp(Customer customer) {
+    public Customer signUp(Customer customer) {
         if (Validate.nameValidation(customer.getFirstName()) &&
                 Validate.nameValidation(customer.getLastName()) &&
                 Validate.emailValidation(customer.getEmail()) &&
                 Validate.passwordValidation(customer.getPassword())) {
             repository.saveOrUpdate(customer);
-            return "success";
+            return customer;
         }
-        return "your customer not save";
+        return customer;
     }
 
     @Override
