@@ -34,7 +34,7 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
         try {
             dutyCategoryService.saveOrUpdate(dutyCategory);
         } catch (PersistenceException e) {
-            System.out.println("you already have this DutyCategory");
+            System.out.println("Error: check your DutyCategory");
         }
 
         return dutyCategory;
@@ -48,7 +48,7 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
             subDuty.setDutyCategory(dutyCategory);
             subDutyService.saveOrUpdate(subDuty);
         } catch (PersistenceException e) {
-            System.out.println("you already have this SubCategory or have not this Category");
+            System.out.println("Error: check Your SubDuty");
         }
 
         return subDuty;
@@ -198,17 +198,67 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
 
     @Override
     public void updateSubDuty(Integer subDutyId, String newDescription, Double newBasePrice) {
-        SubDuty subDuty = subDutyService.findById(subDutyId).orElse(null);
-        assert subDuty != null;
-        subDuty.setDescription(newDescription);
-        subDuty.setBasePrice(newBasePrice);
-        subDutyService.saveOrUpdate(subDuty);
+        try{
+            SubDuty subDuty = subDutyService.findById(subDutyId).orElse(null);
+            assert subDuty != null;
+            if (newDescription.equals("")|| newBasePrice<=0){
+                throw new IllegalArgumentException();
+            }
+            subDuty.setDescription(newDescription);
+            subDuty.setBasePrice(newBasePrice);
+            subDutyService.saveOrUpdate(subDuty);
+        }catch (IllegalArgumentException e){
+            System.out.println();
+        }
+
 
     }
 
     @Override
     public List<SubDuty> seeSubDutyByCategory(Integer category) {
-       return subDutyService.seeSubDutyByCategory(category);
+
+        List<SubDuty> subDuties = subDutyService.seeSubDutyByCategory(category);
+        if (subDuties.size() == 0) {
+            System.out.println("no SubDuty found for category ");
+        }
+        return subDuties;
+    }
+
+
+    @Override
+    public void deleteDutyCategory(Integer dutyCategoryId) {
+        try {
+            dutyCategoryService.deleteById(dutyCategoryId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: check dutyCategory id");
+        }
+
+    }
+
+    @Override
+    public void deleteSubDuty(Integer subDutyId) {
+        try {
+            subDutyService.deleteById(subDutyId);
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: check SubDuty id");
+        }
+
+    }
+
+    @Override
+    public void updateDutyCategory(Integer dutyCategoryId,String newTitle) {
+        try {
+            DutyCategory dutyCategory = dutyCategoryService.findById(dutyCategoryId).orElse(null);
+            assert dutyCategory != null;
+            dutyCategory.setTitle(newTitle);
+            if (newTitle.equals("")){
+                throw new IllegalArgumentException();
+            }
+            dutyCategoryService.saveOrUpdate(dutyCategory);
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: check dutyCategory ");
+        }
+
 
     }
 }
