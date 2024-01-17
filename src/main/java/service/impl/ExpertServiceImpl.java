@@ -1,28 +1,15 @@
 package service.impl;
 
-import base.entity.BaseEntity;
 import base.service.impl.BaseEntityServiceImpl;
-import entity.business.Comment;
 import entity.business.Order;
-import entity.business.SubDuty;
 import entity.enumration.Confirmation;
 import entity.enumration.OrderStatus;
-import entity.enumration.TypeUser;
 import entity.users.Expert;
-import repository.CommentRepository;
 import repository.ExpertRepository;
-import service.CommentService;
 import service.ExpertService;
 import service.OrderService;
 import util.Validate;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ExpertServiceImpl extends BaseEntityServiceImpl<Expert,Integer, ExpertRepository> implements ExpertService {
     private final OrderService orderService;
