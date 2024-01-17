@@ -2,6 +2,7 @@ package repository.impl;
 
 import base.repository.impl.BaseEntityRepositoryImpl;
 import entity.business.Order;
+import entity.enumration.OrderStatus;
 import entity.users.Expert;
 import repository.ExpertRepository;
 
@@ -43,9 +44,10 @@ public class ExpertRepositoryImpl extends BaseEntityRepositoryImpl<Expert,Intege
         String hql="SELECT o FROM Order o " +
                 "JOIN o.subDuty sd " +
                 "JOIN sd.experts e " +
-                "WHERE e.id = :expertId";
+                "WHERE e.id = :expertId and o.orderStatus= :orderStatus ";
         TypedQuery<Order> query = entityManager.createQuery(hql, Order.class);
         query.setParameter("expertId", expertId);
+        query.setParameter("orderStatus", OrderStatus.Waiting_Expert_Sugestion);
         return query.getResultList();
     }
 }
