@@ -15,4 +15,6 @@ public interface ExpertService extends BaseEntityService<Expert,Integer> {
 
     Order acceptOrder(Integer orderId);
 
+    void saveImage(String imagePath,Integer expertId);
+
 }
