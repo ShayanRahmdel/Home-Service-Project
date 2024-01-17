@@ -13,4 +13,18 @@ public class DutyCategoryServiceImpl extends BaseEntityServiceImpl<DutyCategory,
     public DutyCategoryServiceImpl(DutyCategoryRepository repository) {
         super(repository);
     }
+
+    @Override
+    public void updateDutyCategory(Integer dutyCategoryId ,String newTitle) {
+        try {
+            DutyCategory dutyCategory = repository.findById(dutyCategoryId).orElse(null);
+            assert dutyCategory != null;
+            dutyCategory.setTitle(newTitle);
+            repository.saveOrUpdate(dutyCategory);
+        }catch (NullPointerException e){
+            System.out.println("Error: Wrong Id");
+        }
+
+
+    }
 }
