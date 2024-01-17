@@ -11,6 +11,7 @@ import repository.CustomerRepository;
 import service.*;
 import util.Validate;
 
+import javax.persistence.PersistenceException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -39,19 +40,29 @@ public class CustomerServiceImpl extends BaseEntityServiceImpl<Customer, Integer
 
     @Override
     public Customer signUp(Customer customer) {
-        if (Validate.nameValidation(customer.getFirstName()) &&
-                Validate.nameValidation(customer.getLastName()) &&
-                Validate.emailValidation(customer.getEmail()) &&
-                Validate.passwordValidation(customer.getPassword())) {
-            repository.saveOrUpdate(customer);
-            return customer;
+        try {
+            if (Validate.nameValidation(customer.getFirstName()) &&
+                    Validate.nameValidation(customer.getLastName()) &&
+                    Validate.emailValidation(customer.getEmail()) &&
+                    Validate.passwordValidation(customer.getPassword())) {
+                repository.saveOrUpdate(customer);
+                return customer;
+            }
+        }catch (PersistenceException e){
+            System.out.println("Error saving customer");
         }
         return customer;
     }
 
     @Override
     public void changePassword(String email, String oldPassword, String newPassword) {
-        repository.changePassword(email, oldPassword, newPassword);
+        try {
+            if (Validate.passwordValidation(newPassword)){
+                repository.changePassword(email, oldPassword, newPassword);
+            }else throw new IllegalArgumentException();
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: check password");
+        }
 
     }
 
