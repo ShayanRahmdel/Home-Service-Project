@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ExpertService extends BaseEntityService<Expert,Integer> {
 
-    String signUp(Expert expert);
+    Expert signUp(Expert expert);
 
     List<Order> seeOrder(Integer expertId);
 
