@@ -31,8 +31,9 @@ public class DutyCategory extends BaseEntity<Integer> {
 
     @Override
     public String toString() {
-        return "DutyCategory id " + getId()+"\n" +
-                "title" + title+"\n";
+        return " DutyCategory id " + getId()+"\n" +
+                "  title " + title+"\n"+
+                "==================";
     }
 
 
