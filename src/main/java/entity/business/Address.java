@@ -25,7 +25,6 @@ public class Address extends BaseEntity<Integer> {
 
     private String address;
 
-    @Column(unique = true)
     private String postalCode;
 
     @ManyToOne(fetch = FetchType.EAGER)
