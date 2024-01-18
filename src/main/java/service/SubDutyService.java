@@ -10,5 +10,5 @@ public interface SubDutyService extends BaseEntityService<SubDuty,Integer> {
 
     List<SubDuty> seeSubDutyByCategory(Integer category);
 
-    void updateSubDuty(Integer subDutyId,String newDescription,Double newPrice);
+
 }
