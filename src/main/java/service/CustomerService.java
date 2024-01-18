@@ -12,7 +12,7 @@ public interface CustomerService extends BaseEntityService<Customer,Integer> {
 
     void changePassword(String email, String oldPassword,String newPassword);
 
-    Order createOrder(Order order, Integer category, Integer subDutyId, Address address,Integer customerId);
+    Order createOrder(Order order, Integer category, Integer subDutyId,Integer customerId);
 
     Address createAddress(Address address,Integer customerId,Integer orderId);
 
