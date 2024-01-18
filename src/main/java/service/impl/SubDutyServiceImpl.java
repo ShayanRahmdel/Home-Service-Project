@@ -31,18 +31,4 @@ public class SubDutyServiceImpl extends BaseEntityServiceImpl<SubDuty, Integer, 
         }
         return subDutyList;
     }
-
-    @Override
-    public void updateSubDuty(Integer subDutyId, String newDescription, Double newPrice) {
-        try {
-            SubDuty subDuty = repository.findById(subDutyId).orElse(null);
-            assert subDuty != null;
-            subDuty.setDescription(newDescription);
-            subDuty.setBasePrice(newPrice);
-            repository.saveOrUpdate(subDuty);
-        }catch (NullPointerException e){
-            System.out.println("Error : wrong Id");
-        }
-
-    }
 }
