@@ -32,9 +32,19 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
     @Override
     public DutyCategory createDutyCategory(DutyCategory dutyCategory) {
         try {
+
+            Collection<DutyCategory> all = dutyCategoryService.findAll();
+            for (DutyCategory dutyCategoris : all) {
+                if (dutyCategoris.getTitle().equals(dutyCategory.getTitle())){
+                    throw new PersistenceException("duplicate duty category title");
+                }
+            }
+            if (dutyCategory.getTitle().equals("")){
+                throw  new PersistenceException("Empty title");
+            }
             dutyCategoryService.saveOrUpdate(dutyCategory);
         } catch (PersistenceException e) {
-            System.out.println("Error: check your DutyCategory");
+            System.out.println(e.getMessage());
         }
 
         return dutyCategory;
@@ -42,13 +52,24 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
 
     @Override
     public SubDuty createSubDuty(SubDuty subDuty, Integer category) {
-        seeAllDutyCategories();
+
         try {
-            DutyCategory dutyCategory = new DutyCategory(category);
+            System.out.println(seeAllDutyCategories());
+            Collection<SubDuty> all = subDutyService.findAll();
+            for (SubDuty sub : all) {
+                String description = sub.getDescription();
+                if (subDuty.getDescription().equals(description)){
+                    throw new PersistenceException("Duplicate description");
+                }
+            }
+            DutyCategory dutyCategory = dutyCategoryService.findById(category).orElseThrow(PersistenceException::new);
             subDuty.setDutyCategory(dutyCategory);
+            if (subDuty.getDescription().equals("")){
+                throw  new PersistenceException("Empty description");
+            }
             subDutyService.saveOrUpdate(subDuty);
         } catch (PersistenceException e) {
-            System.out.println("Error: check Your SubDuty");
+            System.out.println(e.getMessage());
         }
 
         return subDuty;
@@ -110,12 +131,12 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
     @Override
     public void confirmExpert(Integer expertId) {
         try {
-            Expert expert = expertService.findById(expertId).orElse(null);
+            Expert expert = expertService.findById(expertId).orElseThrow(()->new IllegalArgumentException("Cannot find id"));
             assert expert != null;
             expert.setConfirmation(Confirmation.Accepted);
             expertService.saveOrUpdate(expert);
         }catch (IllegalArgumentException e){
-            System.out.println("Error: check expert ID");
+            System.out.println(e);
         }
     }
 
@@ -262,7 +283,5 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
         }catch (IllegalArgumentException e){
             System.out.println("Error: check dutyCategory ");
         }
-
-
     }
 }
