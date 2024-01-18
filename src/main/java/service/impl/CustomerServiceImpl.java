@@ -67,44 +67,53 @@ public class CustomerServiceImpl extends BaseEntityServiceImpl<Customer, Integer
     }
 
     @Override
-    public Order createOrder(Order order, Integer category, Integer subDutyId, Address address,Integer customerId) {
+    public Order createOrder(Order order, Integer category, Integer subDutyId,Integer customerId) {
         Collection<DutyCategory> allDutyCategory = dutyCategoryService.findAll();
         System.out.println(allDutyCategory);
         List<SubDuty> subDuties = subDutyService.seeSubDutyByCategory(category);
         System.out.println(subDuties);
+        try {
+            SubDuty subDuty = subDutyService.findById(subDutyId).orElseThrow(PersistenceException::new);
+            if (isValidDateAndTime(order.getWorkDate(), order.getTimeDate())) {
+                assert subDuty != null;
+                if (isValidPrice(subDuty,order.getProposedPrice())) {
+                    order.setSubDuty(subDuty);
+                    order.setComment(null);
+                    order.setOrderStatus(OrderStatus.Waiting_Expert_Sugestion);
+                    order.setAddress(null);
+                    orderService.saveOrUpdate(order);
 
-        Customer customer = repository.findById(customerId).orElse(null);
-
-        SubDuty subDuty = subDutyService.findById(subDutyId).orElse(null);
-        if (isValidDateAndTime(order.getWorkDate(),order.getTimeDate()) &&
-        isValidPrice(subDuty,order.getProposedPrice())){
-                order.setAddress(address);
-                order.setSubDuty(subDuty);
-                order.setComment(null);
-                order.setOrderStatus(OrderStatus.Waiting_Expert_Sugestion);
-                order.setAddress(null);
-                orderService.saveOrUpdate(order);
-
+                }
             }
+            return order;
+        }catch (PersistenceException e) {
+            System.out.println("Error: saving order:");
+        }
         return order;
+
         }
 
     @Override
     public Address createAddress(Address address,Integer customerId,Integer orderId) {
-        Customer customer = repository.findById(customerId).orElse(null);
-        Order order = orderService.findById(orderId).orElse(null);
-        if (Validate.cityValidation(address.getCity())&& Validate.postalValidation(address.getPostalCode())
-        && Validate.isValidCity(address.getState())) {
-            address.setCustomer(customer);
-            addressService.saveOrUpdate(address);
+       try {
+           Customer customer = repository.findById(customerId).orElseThrow(()->new PersistenceException("cant find customer"));
+           Order order = orderService.findById(orderId).orElseThrow(()->new PersistenceException("Cant find order"));
+           if (Validate.cityValidation(address.getCity())&& Validate.postalValidation(address.getPostalCode())
+                   && Validate.isValidCity(address.getState())) {
+               address.setCustomer(customer);
+               addressService.saveOrUpdate(address);
 
-            assert order != null;
-            order.setAddress(address);
-            orderService.saveOrUpdate(order);
-            order.setAddress(address);
-            orderService.saveOrUpdate(order);
-        }
-        return address;
+               assert order != null;
+               order.setAddress(address);
+               orderService.saveOrUpdate(order);
+               order.setAddress(address);
+               orderService.saveOrUpdate(order);
+           }
+           return address;
+       }catch (PersistenceException e){
+           System.out.println(e.getMessage());
+       }
+       return address;
     }
 
 
