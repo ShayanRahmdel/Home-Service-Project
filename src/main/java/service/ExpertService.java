@@ -5,11 +5,14 @@ import entity.business.Order;
 import entity.users.Customer;
 import entity.users.Expert;
 
+import java.io.File;
 import java.util.List;
 
 public interface ExpertService extends BaseEntityService<Expert,Integer> {
 
-    Expert signUp(Expert expert);
+    Expert signUp(Expert expert, File image);
+
+    void changePassword(String email, String oldPassword,String newPassword);
 
     List<Order> seeOrder(Integer expertId);
 
