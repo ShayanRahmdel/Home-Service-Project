@@ -233,7 +233,7 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
             subDuty.setBasePrice(newBasePrice);
             subDutyService.saveOrUpdate(subDuty);
         }catch (IllegalArgumentException e){
-            System.out.println();
+            System.out.println("Error updating");
         }
 
 
