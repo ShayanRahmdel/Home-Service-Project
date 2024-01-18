@@ -25,6 +25,9 @@ public class Expert extends User {
 
     private byte[] image;
 
+    private Double overallScore=0.0;
+
+
     @ManyToMany(mappedBy = "experts")
     private Set<SubDuty> subDuties;
 
