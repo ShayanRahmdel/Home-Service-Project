@@ -109,10 +109,14 @@ public class AdminServiceImpl extends BaseEntityServiceImpl<Admin, Integer, Admi
 
     @Override
     public void confirmExpert(Integer expertId) {
-        Expert expert = expertService.findById(expertId).orElse(null);
-        assert expert != null;
-        expert.setConfirmation(Confirmation.Accepted);
-        expertService.saveOrUpdate(expert);
+        try {
+            Expert expert = expertService.findById(expertId).orElse(null);
+            assert expert != null;
+            expert.setConfirmation(Confirmation.Accepted);
+            expertService.saveOrUpdate(expert);
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: check expert ID");
+        }
     }
 
     @Override
